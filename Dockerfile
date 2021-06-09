@@ -1,11 +1,12 @@
-FROM debian:wheezy
+FROM debian:bullseye-slim
 
-MAINTAINER Ozzy Johnson <docker@ozzy.io>
+LABEL maintainer="Ozzy Johnson <docker@ozzy.io>"
+LABEL maintainer="Philipp Haußleiter <philipp@haussleiter.de>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV CUDA_DRIVER 346.35
-ENV CUDA_INSTALL http://us.download.nvidia.com/XFree86/Linux-x86_64/${CUDA_DRIVER}/NVIDIA-Linux-x86_64-${CUDA_DRIVER}.run
+ENV CUDA_DRIVER 460.84
+ENV CUDA_INSTALL https://de.download.nvidia.com/XFree86/Linux-x86_64/${CUDA_DRIVER}/NVIDIA-Linux-x86_64-${CUDA_DRIVER}.run
 
 # Update and install minimal.
 RUN \
@@ -16,9 +17,9 @@ RUN \
             --no-install-recommends \
             --no-install-suggests \
        build-essential \
-       module-init-tools \
+       kmod \
        wget \
-
+       ca-certificates \
 # Clean up packages.
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
