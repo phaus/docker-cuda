@@ -5,7 +5,7 @@ LABEL maintainer="Philipp Haußleiter <philipp@haussleiter.de>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV CUDA_DRIVER 460.84
+ENV CUDA_DRIVER 465.27
 ENV CUDA_INSTALL https://de.download.nvidia.com/XFree86/Linux-x86_64/${CUDA_DRIVER}/NVIDIA-Linux-x86_64-${CUDA_DRIVER}.run
 
 # Update and install minimal.
@@ -37,4 +37,4 @@ RUN wget \
       && rm -rf /tmp/*
 
 # Default command.
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
